@@ -133,9 +133,7 @@ const Header1 = () => {
             <Link href="/shoppingcart">
               <li className="hover:text-pink-500 cursor-pointer">Live Products</li>
             </Link>
-            <Link href="/products">
-              <li className="hover:text-pink-500 cursor-pointer">Products</li>
-            </Link>
+           
             <Link href="/blog">
               <li className="hover:text-pink-500 cursor-pointer">Blog</li>
             </Link>
@@ -162,9 +160,7 @@ const Header1 = () => {
             <Link href="/shoppingcart">
               <li className="hover:text-pink-500 cursor-pointer">Live Products</li>
             </Link>
-            <Link href="/products">
-              <li className="hover:text-pink-500">Products</li>
-            </Link>
+           
             <Link href="/blog">
               <li className="hover:text-pink-500">Blog</li>
             </Link>
