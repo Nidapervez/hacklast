@@ -1,6 +1,7 @@
 import React from "react";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
+import Link from "next/link";
 
 // Define the structure of your product data
 interface Product {
@@ -91,6 +92,12 @@ const ProductDetailPage = async ({
               {/* Snipcart Add to Cart Button */}
             </div>
           </div>
+          <Link href="/shoppingcart"> <button
+                className=" w-full px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition sm:w-auto"
+               
+              >
+                Back
+              </button></Link>
         </div>
       </div>
     );
