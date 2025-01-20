@@ -2,8 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 
+type Product = {
+  title: string;
+  slug: string;
+  description: string;
+  imageUrl: string;
+  alt: string;
+  price: number;
+};
+
 const Chair = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
