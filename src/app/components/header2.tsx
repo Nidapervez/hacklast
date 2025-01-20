@@ -86,11 +86,7 @@ const Header1 = () => {
               <FontAwesomeIcon icon={faShoppingCart} className="mr-2" /> Cart
             </button>
           </Link>
-          <Link href="/orderconfirmation">
-            <button className="flex items-center">
-              OrderConfirmation
-            </button>
-          </Link>
+         
         </div>
       </div>
 
