@@ -6,8 +6,8 @@ interface CartItem {
   id: string;
   name: string;
   quantity: number;
-  image:string;
-  price:number
+  image: string;
+  price: number;
 }
 
 interface CartState {
@@ -18,7 +18,7 @@ interface CartContextType {
   cart: CartState;
   add: (item: CartItem) => void;
   increaseQuantity: (id: string) => void;
-  decreaseQuantity: (id: string) => void; // Add decreaseQuantity here
+  decreaseQuantity: (id: string) => void;
   deleteItem: (id: string) => void;
 }
 
@@ -66,7 +66,12 @@ const cartReducer = (state: CartState, action: any): CartState => {
   }
 };
 
-export const CartProvider: React.FC = ({ children }) => {
+// Define CartProviderProps to accept children prop
+interface CartProviderProps {
+  children: React.ReactNode;
+}
+
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, { items: [] });
 
   const add = (item: CartItem) => {

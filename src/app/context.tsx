@@ -1,13 +1,12 @@
 "use client";
-
 import React, { createContext, useContext, useReducer } from "react";
 
 interface CartItem {
   id: string;
   name: string;
   quantity: number;
-  image:string;
-  price:number
+  image: string;
+  price: number;
 }
 
 interface CartState {
@@ -69,7 +68,12 @@ const cartReducer = (state: CartState, action: any): CartState => {
   }
 };
 
-export const CartProvider: React.FC = ({ children }) => {
+// Updated CartProvider to accept children prop
+interface CartProviderProps {
+  children: React.ReactNode;
+}
+
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, { items: [] });
 
   const add = (item: CartItem) => {

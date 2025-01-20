@@ -5,7 +5,20 @@ import ShippoData from "./ShippoData";
 
 interface CheckoutFormProps {
   setIsCheckoutVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  userId: string; // Assuming userId is passed as a prop
+  userId: string; // userId should be passed as a prop
+}
+
+interface OrderDetails {
+  _id: string;
+  name: string;
+  email: string;
+  address: string;
+  cartItems: Array<{
+    id: string;
+    name: string;
+    quantity: number;
+    price: number;
+  }>;
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userId }) => {
@@ -13,7 +26,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
-  const [orderDetails, setOrderDetails] = useState<any | null>(null);
+  const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +70,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
         <p className="mb-2"><strong>Address:</strong> {orderDetails.address}</p>
         <h3 className="text-lg font-semibold mt-4">Cart Items:</h3>
         <ul className="list-disc pl-5">
-          {orderDetails.cartItems.map((item: any) => (
+          {orderDetails.cartItems.map((item) => (
             <li key={item.id}>
               {item.name} - {item.quantity} x ${item.price}
             </li>
@@ -70,7 +83,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
           Close
         </button>
 
-        <ShippoData/>
+        <ShippoData />
       </div>
     );
   }
@@ -118,7 +131,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
         >
           Place Order
         </button>
-        <ShippoData/>
+        <ShippoData />
       </form>
     </div>
   );
