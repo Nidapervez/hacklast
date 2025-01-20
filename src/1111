@@ -1,0 +1,47 @@
+const sanityClient = require('@sanity/client');
+const fetch = require('node-fetch');
+
+// Sanity client setup
+const client = sanityClient({
+  projectId: 'your_project_id',
+  dataset: 'your_dataset',
+  useCdn: false,
+});
+
+async function importData() {
+  const res = await fetch('https://api.mock.com/data'); // Replace with your mock API
+  const data = await res.json();
+
+  const documents = data.map((item) => {
+    return {
+      _type: 'post',
+      title: item.title,
+      slug: {
+        _type: 'slug',
+        current: generateSlug(item.title), // Generate slug based on the title
+      },
+      body: item.body,
+      // other fields as required
+    };
+  });
+
+  // Insert documents into Sanity
+  try {
+    const result = await client.createOrReplace(documents);
+    console.log('Data imported successfully:', result);
+  } catch (err) {
+    console.error('Error importing data:', err);
+  }
+}
+
+// Simple function to generate slugs based on title
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with dashes
+    .replace(/[^\w\-]+/g, '') // Remove non-word characters
+    .slice(0, 96); // Ensure slug is not too long (adjust max length if necessary)
+}
+
+// Run the import function
+importData();

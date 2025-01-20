@@ -1,32 +1,144 @@
+import React from 'react'
 
-import Baner from "./components/baner";
-import Bar from "./components/bar";
-import Chair from "./components/chair";
-import ShopexOffers from "@/app/components/offer1";
-import Latestblog from "./components/latestblog";
-import Newfur from "./components/newfur";
-import Sofa from "./components/sofa";
-import Topcategory from "./components/topcategory";
-import Trendingproducts from "@/app/components/trendindproducts1";
-import Twentyprcnt from "./components/twentyprcnt";
-import Unique from "./components/unique";
-import Trendingproducts1 from "@/app/components/trendindproducts1";
-
-export default function Home() {
+const Trending = () => {
   return (
-  <>
-   
-    <Newfur/>
-    <div className="mx-32">
-    <h1 className='text-3xl font-bold text-[#1A0B5B] text-center my-10'>Featured products</h1> 
-    <Chair/>
-    <h1 className='text-3xl font-bold text-[#1A0B5B] text-center my-10 '>Latest products</h1> 
+    <div><div>
+    <div
+      className="flex gap-5 max-md:flex-col"
+      role="region"
+      aria-label="Featured Products"
+    >
+      <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow shadow-2xl max-md:mt-7">
+          <div
+            className="flex flex-col items-center px-3 pt-3 pb-8 w-full bg-white"
+            tabIndex={0}
+            role="article"
+          >
+            <div className="flex flex-col self-stretch">
+              <img
+                src="chair1.jpg"
+                alt="Cantilever chair product"
+                className="flex shrink-0 aspect-square bg-neutral-100 h-[244px]"
+              />
+            </div>
+            <div className="mt-4 text-base font-bold leading-relaxed text-center text-violet-950">
+              Cantilever chair
+            </div>
+            <div className="flex gap-3 mt-2 text-center w-[92px]">
+              <div className="text-sm text-violet-950" aria-label="Current price">
+                $26.00
+              </div>
+              <div
+                className="text-xs text-violet-950 text-opacity-30"
+                aria-label="Original price"
+              >
+                $42.00
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow shadow-2xl max-md:mt-7">
+          <div
+            className="flex flex-col items-center px-3 pt-3 pb-8 w-full bg-white"
+            tabIndex={0}
+            role="article"
+          >
+            <div className="flex flex-col self-stretch">
+              <img
+                src="chair2.jpg"
+                alt="Cantilever chair product"
+                className="flex shrink-0 aspect-square bg-neutral-100 h-[244px]"
+              />
+            </div>
+            <div className="mt-4 text-base font-bold leading-relaxed text-center text-violet-950">
+              Cantilever chair
+            </div>
+            <div className="flex gap-3 mt-2 text-center w-[92px]">
+              <div className="text-sm text-violet-950" aria-label="Current price">
+                $26.00
+              </div>
+              <div
+                className="text-xs text-violet-950 text-opacity-30"
+                aria-label="Original price"
+              >
+                $42.00
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow shadow-2xl max-md:mt-7">
+          <div
+            className="flex flex-col items-center px-3 pt-3 pb-8 w-full bg-white"
+            tabIndex={0}
+            role="article"
+          >
+            <div className="flex flex-col self-stretch">
+              <img
+                src="chair3.jpg"
+                alt="Cantilever chair product"
+                className="flex shrink-0 aspect-square bg-neutral-100 h-[244px]"
+              />
+            </div>
+            <div className="mt-4 text-base font-bold leading-relaxed text-center text-violet-950">
+              Cantilever chair
+            </div>
+            <div className="flex gap-3 mt-2 text-center w-[92px]">
+              <div className="text-sm text-violet-950" aria-label="Current price">
+                $26.00
+              </div>
+              <div
+                className="text-xs text-violet-950 text-opacity-30"
+                aria-label="Original price"
+              >
+                $42.00
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow shadow-2xl max-md:mt-7">
+          <div
+            className="flex flex-col items-center px-3 pt-3 pb-8 w-full bg-white"
+            tabIndex={0}
+            role="article"
+          >
+            <div className="flex flex-col self-stretch">
+              <img
+                src="chair4.jpg"
+                alt="Cantilever chair product"
+                className="flex shrink-0 aspect-square bg-neutral-100 h-[244px]"
+              />
+            </div>
+            <div className="mt-4 text-base font-bold leading-relaxed text-center text-violet-950">
+              Cantilever chair
+            </div>
+            <div className="flex gap-3 mt-2 text-center w-[92px]">
+              <div className="text-sm text-violet-950" aria-label="Current price">
+                $26.00
+              </div>
+              <div
+                className="text-xs text-violet-950 text-opacity-30"
+                aria-label="Original price"
+              >
+                $42.00
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <Sofa/>
-    <ShopexOffers/>
-    <Unique/>
-    <Trendingproducts1/>
-    <div className="mt-10 max-w-full w-[1160px] ">
+<div>
+
+
+{/* <div className="mt-10 max-w-full w-[1160px]">
   <div className="flex gap-5 max-md:flex-col">
     <div className="flex flex-col w-[38%] max-md:ml-0 max-md:w-full">
       <div
@@ -142,13 +254,14 @@ export default function Home() {
       </div>
     </div>
   </div>
+</div> */}
+
 </div>
-<h1 className='text-3xl font-bold text-[#1A0B5B] text-center my-10 '>Discount Item</h1> 
-   <Twentyprcnt />
-   <h1 className='text-3xl font-bold text-[#1A0B5B] text-center my-10 '>Top Categories</h1> 
-   <Topcategory/>
-   <Baner/>
-   <Latestblog/>
-    </div></>
-  );
+
+
+
+  </div>
+  )
 }
+
+export default Trending
