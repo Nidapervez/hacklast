@@ -6,7 +6,8 @@ interface CartItem {
   id: string;
   name: string;
   quantity: number;
-  image:string
+  image:string;
+  price:number
 }
 
 interface CartState {
