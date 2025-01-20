@@ -14,13 +14,17 @@ interface Product {
   ratingCount: number;
   tags: string[];
   sizes: string[];
-  image:string;
-  };
-
+  image: string;
+}
 
 // Fetch product data using a fetch call inside the component
-const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+const ProductDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const resolvedParams = await params; // Resolve the promise
+  const { id } = resolvedParams;
 
   const query = `*[_type == "product" && _id == $id]{
     _id,
@@ -46,25 +50,31 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
 
     return (
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">{product.name}</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          {product.name}
+        </h1>
         <div className="flex flex-col sm:flex-row gap-8">
           {/* Product Image Section */}
           <div className="flex-1 max-w-sm mx-auto sm:max-w-lg sm:w-1/2">
             <Image
-                             src={product.image || "/placeholder.png"} // Handle the image URL
-                             alt={product.name || "Product Image"}
-                             width={300}
-                             height={300}
-                             className="w-full h-64 object-cover rounded-md mb-4"
-                           />
+              src={product.image || "/placeholder.png"} // Handle the image URL
+              alt={product.name || "Product Image"}
+              width={300}
+              height={300}
+              className="w-full h-64 object-cover rounded-md mb-4"
+            />
           </div>
 
           {/* Product Information Section */}
           <div className="flex-1 sm:w-1/2">
             <div className="space-y-6">
-              <p className="text-base sm:text-lg text-gray-700">{product.description}</p>
+              <p className="text-base sm:text-lg text-gray-700">
+                {product.description}
+              </p>
               <div className="flex items-center space-x-4">
-                <p className="text-2xl sm:text-3xl font-semibold text-gray-800">${product.price}</p>
+                <p className="text-2xl sm:text-3xl font-semibold text-gray-800">
+                  ${product.price}
+                </p>
                 {product.discountPercentage && (
                   <span className="text-lg sm:text-xl text-red-500 line-through">
                     ${product.priceWithoutDiscount}
@@ -74,10 +84,11 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
               <p className="text-sm sm:text-base text-gray-500">
                 {product.rating} ★ ({product.ratingCount} reviews)
               </p>
-              <p className="text-sm sm:text-base text-gray-600">Sizes: {product.sizes?.join(", ")}</p>
+              <p className="text-sm sm:text-base text-gray-600">
+                Sizes: {product.sizes?.join(", ")}
+              </p>
 
               {/* Snipcart Add to Cart Button */}
-         
             </div>
           </div>
         </div>
