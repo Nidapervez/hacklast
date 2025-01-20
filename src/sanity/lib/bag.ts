@@ -1,3 +1,5 @@
+import { Rule } from '@sanity/types';
+
 export default {
   name: 'bag',
   title: 'Bag',
@@ -7,7 +9,7 @@ export default {
       name: 'name',
       title: 'Name',
       type: 'string',
-      validation: (Rule) => Rule.required().error('Name is required'),
+      validation: (Rule: Rule) => Rule.required().error('Name is required'),
     },
     {
       name: 'slug',
@@ -17,7 +19,7 @@ export default {
         source: 'name', // Generates the slug from the 'name' field
         maxLength: 96,   // Maximum length for the slug
       },
-      validation: (Rule) => Rule.required().error('Slug is required'),
+      validation: (Rule: Rule) => Rule.required().error('Slug is required'),
     },
     {
       name: 'image',
@@ -26,13 +28,13 @@ export default {
       options: {
         hotspot: true, // Allows cropping
       },
-      validation: (Rule) => Rule.required().error('Image is required'),
+      validation: (Rule: Rule) => Rule.required().error('Image is required'),
     },
     {
       name: 'price',
       title: 'Price',
       type: 'number',
-      validation: (Rule) => Rule.required().positive().error('Price must be a positive number'),
+      validation: (Rule: Rule) => Rule.required().positive().error('Price must be a positive number'),
     },
   ],
 };
