@@ -1,9 +1,20 @@
-"use client"
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 
+// Define the Product interface
+interface Product {
+  title: string;
+  slug: string;
+  description: string;
+  imageUrl: string;
+  alt: string;
+  price: number;
+}
+
 const Chair = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,7 +40,7 @@ const Chair = () => {
         role="region"
         aria-label="Featured Products"
       >
-        {products.map((product, index) => (
+        {products.map((product: Product, index) => (
           <div
             key={index}
             className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full"
@@ -61,12 +72,10 @@ const Chair = () => {
                 </div>
                 <div className="mt-3 text-sm text-violet-950">
                   ${product.price.toFixed(2)}
-               
                 </div>
                 <button className="bg-pink-400"></button>
               </div>
             </div>
-            
           </div>
         ))}
       </div>
