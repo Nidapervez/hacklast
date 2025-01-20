@@ -1,11 +1,19 @@
-"use client"
-
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client"; // Ensure that the Sanity client is imported
 
+// Define the product interface
+interface Product {
+  title: string;
+  slug: string;
+  description: string;
+  imageUrl: string;
+  alt: string;
+  price: number;
+}
+
 const Topcategory = () => {
-  const [topProducts, setTopProducts] = useState([]);
-  
+  const [topProducts, setTopProducts] = useState<Product[]>([]); // Specify the type here
+
   useEffect(() => {
     const fetchTopProducts = async () => {
       const query = `*[_type == "top"]{
