@@ -60,9 +60,9 @@ const ProductDetailPage = async ({
             <Image
               src={product.image || "/placeholder.png"} // Handle the image URL
               alt={product.name || "Product Image"}
-              width={300}
-              height={300}
-              className="w-full h-64 object-cover rounded-md mb-4"
+              width={500} // Larger width
+              height={500} // Larger height
+              className="w-full h-full object-contain rounded-md mb-4" // Maintain aspect ratio
             />
           </div>
 
@@ -88,17 +88,18 @@ const ProductDetailPage = async ({
               <p className="text-sm sm:text-base text-gray-600">
                 Sizes: {product.sizes?.join(", ")}
               </p>
-
-              {/* Snipcart Add to Cart Button */}
             </div>
           </div>
-          <Link href="/shoppingcart"> <button
-                className=" w-full px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition sm:w-auto"
-               
-              >
-                Back
-              </button></Link>
         </div>
+
+        {/* Back Button */}
+        <Link href="/shoppingcart">
+          <button
+            className="mt-6 px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition"
+          >
+            Back
+          </button>
+        </Link>
       </div>
     );
   } catch (error) {
