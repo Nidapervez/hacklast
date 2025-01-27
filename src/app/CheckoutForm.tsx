@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useCart } from "./context";
-import ShippoData from "./ShippoData";
+
 import CheckoutButton from "./components/checkoutbutton";
 
 interface CheckoutFormProps {
@@ -90,7 +90,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
           price: item.price,
         }))} />
 
-        <ShippoData />
+      
       </div>
     );
   }
@@ -138,7 +138,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
         >
           Place Order
         </button>
-        <ShippoData />
+       
       </form>
     </div>
   );
