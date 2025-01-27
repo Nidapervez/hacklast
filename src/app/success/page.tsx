@@ -1,4 +1,7 @@
 "use client"
+
+import ShippoData from "../ShippoData";
+
 export default function Success() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -33,7 +36,9 @@ export default function Success() {
         >
           Back to Home
         </button>
+        <ShippoData/>
       </div>
+    
     </div>
   );
 }
