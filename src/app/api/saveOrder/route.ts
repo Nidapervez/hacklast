@@ -10,7 +10,7 @@ const sanityClient = createClient({
 });
 
 export async function POST(req: Request) {
-  const { name, email, address, userId, cartItems } = await req.json();
+  const { name, email, address, userId, cartItems, totalAmount } = await req.json();
 
   try {
     const orderData = {
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       name,
       email,
       address,
-      userId, // Save user ID with the order
+      userId,
       createdAt: new Date().toISOString(),
       cartItems: cartItems.map((item: any) => ({
         _type: "cartItem",
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         quantity: item.quantity,
         price: item.price,
       })),
+      totalAmount, // Save total amount with the order
     };
 
     const response = await sanityClient.create(orderData);

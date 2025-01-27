@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { useCart } from "@/app/context";
-import { Cart } from "../cart"; // Ensure the Cart component is correctly imported
+import { Cart } from "../cart";
+import toast from "react-hot-toast";
 
 interface Product {
   _id: string;
@@ -27,7 +28,7 @@ interface Product {
 const Inside = () => {
   const [bags, setBags] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const { add } = useCart(); // Access the add function from the cart context
+  const { add } = useCart();
 
   useEffect(() => {
     const fetchBags = async () => {
@@ -73,9 +74,6 @@ const Inside = () => {
     <div className="container mx-auto mt-10 px-6">
       <h1 className="text-3xl font-semibold text-gray-800 mb-8">Product List</h1>
 
-      {/* Display the Cart component */}
-      <Cart />
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {bags.map((bag) => (
           <div
@@ -115,15 +113,16 @@ const Inside = () => {
             </div>
             {/* Add to Cart Button */}
             <button
-              onClick={() =>
+              onClick={() => {
                 add({
                   id: bag._id,
                   name: bag.name,
                   price: parseFloat(bag.price),
                   quantity: 1,
                   image: bag.image || "/placeholder.png",
-                })
-              }
+                });
+                toast.success(`${bag.name} added to cart!`);
+              }}
               className="mt-4 px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none"
             >
               Add to Cart
@@ -131,6 +130,7 @@ const Inside = () => {
           </div>
         ))}
       </div>
+      <Cart />
     </div>
   );
 };

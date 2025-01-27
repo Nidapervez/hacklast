@@ -1,11 +1,12 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { useCart } from "./context";
 import ShippoData from "./ShippoData";
+import CheckoutButton from "./components/checkoutbutton";
 
 interface CheckoutFormProps {
   setIsCheckoutVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  userId: string; // userId should be passed as a prop
+  userId: string;
 }
 
 interface OrderDetails {
@@ -13,6 +14,7 @@ interface OrderDetails {
   name: string;
   email: string;
   address: string;
+  totalAmount: number;
   cartItems: Array<{
     id: string;
     name: string;
@@ -31,12 +33,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const totalAmount = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
+
     const orderData = {
       name,
       email,
       address,
-      userId, // Save the user ID with the order
+      userId,
       cartItems: cart.items,
+      totalAmount,
     };
 
     try {
@@ -50,8 +55,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
 
       if (response.ok) {
         const result = await response.json();
-        setOrderDetails(result.order); // Save the order details
-        clearCart(); // Clear the cart after order success
+        setOrderDetails(result.order);
+        clearCart();
       } else {
         alert("Failed to place the order.");
       }
@@ -68,6 +73,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
         <p className="mb-2"><strong>Name:</strong> {orderDetails.name}</p>
         <p className="mb-2"><strong>Email:</strong> {orderDetails.email}</p>
         <p className="mb-2"><strong>Address:</strong> {orderDetails.address}</p>
+        <p className="mb-2"><strong>Total Amount:</strong> ${orderDetails.totalAmount.toFixed(2)}</p>
         <h3 className="text-lg font-semibold mt-4">Cart Items:</h3>
         <ul className="list-disc pl-5">
           {orderDetails.cartItems.map((item) => (
@@ -76,12 +82,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
             </li>
           ))}
         </ul>
-        <button
-          onClick={() => setIsCheckoutVisible(false)}
-          className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-md"
-        >
-          Close
-        </button>
+
+        {/* Render CheckoutButton */}
+        <CheckoutButton items={orderDetails.cartItems.map((item) => ({
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+        }))} />
 
         <ShippoData />
       </div>
@@ -90,7 +97,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
 
   return (
     <div className="p-6 bg-white shadow-lg">
-      <h2 className="text-xl font-bold mb-4">Checkout</h2>
+      <h2 className="text-xl font-bold mb-4">Checkout from stripe</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium">Name</label>
@@ -127,7 +134,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md"
+          className="w-full bg-blue-600 text-white py-2 rounded-md mb-4"
         >
           Place Order
         </button>
