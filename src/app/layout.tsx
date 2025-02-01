@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "./components/footer";
@@ -39,13 +40,13 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
-      >
+      > <ClerkProvider>
         <CartProvider>
           <Header1 />
           <Toaster /> {/* Toaster component for global notifications */}
           <main>{children}</main>
           <Footer />
-        </CartProvider>
+        </CartProvider></ClerkProvider>
       </body>
     </html>
   );
