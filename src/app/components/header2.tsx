@@ -51,7 +51,7 @@ const Header1 = () => {
               <FontAwesomeIcon icon={faShoppingCart} className="mr-2" /> Cart
             </button>
           </Link>
-          <Link href="/dashborad">
+          <Link href="/dashboard">
             <button className="flex items-center">
               <FontAwesomeIcon icon={faCogs} className="mr-2" /> Admin Dashboard
             </button>
