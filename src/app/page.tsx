@@ -42,7 +42,7 @@ export default function Home() {
             href="#shop-now"
             className="self-start mt-2.5 underline decoration-auto decoration-solid underline-offset-auto focus:outline-none focus:ring-2 focus:ring-pink-500"
             aria-label="Shop Now - 23% off all products"
-          >
+          >     
             Shop Now
           </a>
           <img
