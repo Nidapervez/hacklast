@@ -22,11 +22,8 @@ const Analytics = () => {
 
   useEffect(() => {
     const fetchAnalytics = async () => {
-      const query = `*[_type == "order"] | order(createdAt desc){
-        cartItems[]->{
-          price,
-          quantity
-        }
+      const query = `*[_type == "newOrder"] | order(createdAt desc){
+        cartItems
       }`;
       const data = await client.fetch(query);
 

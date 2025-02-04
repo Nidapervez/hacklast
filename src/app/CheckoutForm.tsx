@@ -1,7 +1,7 @@
 "use client";
+
 import React, { useState } from "react";
 import { useCart } from "./context";
-
 import CheckoutButton from "./components/checkoutbutton";
 
 interface CheckoutFormProps {
@@ -83,62 +83,34 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ setIsCheckoutVisible, userI
           ))}
         </ul>
 
-        {/* Render CheckoutButton */}
-        <CheckoutButton items={orderDetails.cartItems.map((item) => ({
-          name: item.name,
-          quantity: item.quantity,
-          price: item.price,
-        }))} />
-
-      
+        <CheckoutButton
+          items={orderDetails.cartItems.map((item) => ({
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+          }))}
+        />
       </div>
     );
   }
 
   return (
     <div className="p-6 bg-white shadow-lg">
-      <h2 className="text-xl font-bold mb-4">Checkout from stripe</h2>
+      <h2 className="text-xl font-bold mb-4">Checkout</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium">Name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
+          <label className="block text-sm font-medium">Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required className="w-full p-2 border border-gray-300 rounded-md" />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
+          <label className="block text-sm font-medium">Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full p-2 border border-gray-300 rounded-md" />
         </div>
         <div className="mb-4">
-          <label htmlFor="address" className="block text-sm font-medium">Address</label>
-          <input
-            id="address"
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
+          <label className="block text-sm font-medium">Address</label>
+          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required className="w-full p-2 border border-gray-300 rounded-md" />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md mb-4"
-        >
-          Place Order
-        </button>
-       
+        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md mb-4">Place Order</button>
       </form>
     </div>
   );
