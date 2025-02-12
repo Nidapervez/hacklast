@@ -1,3 +1,4 @@
+
 "use client";
 import { useState } from "react";
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
@@ -20,23 +21,16 @@ const Header1 = () => {
   return (
     <header>
       {/* Top Bar */}
-      <div className="bg-purple-600 text-white text-sm py-2 px-4 flex justify-between items-center">
-        <div className="flex space-x-4">
-          <span className="flex items-center">
-            <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-            mhhasanul@gmail.com
-          </span>
-          <span className="flex items-center">
-            <FontAwesomeIcon icon={faPhone} className="mr-2" />
-            (12345)67890
-          </span>
+      <div className="bg-purple-600 text-white text-sm py-2 px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+         
         </div>
 
         {/* Authentication */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4 mt-2 md:mt-0">
           {isSignedIn ? (
             <>
-              <span className="text-sm">Hello, {user?.fullName}!</span>
+              <span className="text-sm hidden md:inline">Hello, {user?.fullName}!</span>
               <SignOutButton>
                 <button className="bg-red-500 px-4 py-1 text-white rounded">Logout</button>
               </SignOutButton>
@@ -51,13 +45,13 @@ const Header1 = () => {
               <FontAwesomeIcon icon={faShoppingCart} className="mr-2" /> Cart
             </button>
           </Link>
-          <Link href="/dashboard">
-            <button className="flex items-center">
+          <Link href="https://dashborad-tawny.vercel.app/">
+            <button className="flex items-center hidden md:inline">
               <FontAwesomeIcon icon={faCogs} className="mr-2" /> Admin Dashboard
             </button>
           </Link>
           <Link href="/analytics">
-            <button className="flex items-center">
+            <button className="flex items-center hidden md:inline">
               <FontAwesomeIcon icon={faChartLine} className="mr-2" /> Analytics
             </button>
           </Link>
@@ -74,61 +68,47 @@ const Header1 = () => {
             aria-label="Toggle Menu"
           >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
 
           {/* Desktop Menu Links */}
-          <ul className="hidden md:flex space-x-8 text-gray-800 text-sm">
-            <li>
-              <Link href="/" className="hover:text-pink-500">Home</Link>
-            </li>
-            <li>
-              <Link href="/pages" className="hover:text-pink-500">Pages</Link>
-            </li>
-            <li>
-              <Link href="/shoppingcart" className="hover:text-pink-500">Shop</Link>
-            </li>
-            <li>
-              <Link href="/blog" className="hover:text-pink-500">Blog</Link>
-            </li>
-            <li>
-              <Link href="/shop" className="hover:text-pink-500">More Products</Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-pink-500">Contact</Link>
-            </li>
+          <ul className="hidden md:flex space-x-6 text-gray-800 text-sm">
+            <li><Link href="/" className="hover:text-pink-500">Home</Link></li>
+            <li><Link href="/pages" className="hover:text-pink-500">Pages</Link></li>
+            <li><Link href="/shoppingcart" className="hover:text-pink-500">Shop</Link></li>
+            <li><Link href="/blog" className="hover:text-pink-500">Blog</Link></li>
+            <li><Link href="/shop" className="hover:text-pink-500">More Products</Link></li>
+            <li><Link href="/contact" className="hover:text-pink-500">Contact</Link></li>
           </ul>
         </div>
 
         {/* Mobile Menu Links */}
         {isMenuOpen && (
-          <ul className="flex flex-col mt-4 space-y-2 md:hidden text-gray-800 text-sm">
+          <ul className="flex flex-col mt-4 space-y-2 md:hidden text-gray-800 text-sm bg-white shadow-md p-4 rounded-lg">
+            <li><Link href="/" className="hover:text-pink-500">Home</Link></li>
+            <li><Link href="/pages" className="hover:text-pink-500">Pages</Link></li>
+            <li><Link href="/shoppingcart" className="hover:text-pink-500">Shop</Link></li>
+            <li><Link href="/blog" className="hover:text-pink-500">Blog</Link></li>
+            <li><Link href="/shop" className="hover:text-pink-500">More Products</Link></li>
+            <li><Link href="/contact" className="hover:text-pink-500">Contact</Link></li>
             <li>
-              <Link href="/" className="hover:text-pink-500">Home</Link>
+              <Link href="/cart" className="hover:text-pink-500 flex items-center">
+                <FontAwesomeIcon icon={faShoppingCart} className="mr-2" /> Cart
+              </Link>
             </li>
-            <li>
-              <Link href="/pages" className="hover:text-pink-500">Pages</Link>
-            </li>
-            <li>
-              <Link href="/shoppingcart" className="hover:text-pink-500">Shop</Link>
-            </li>
-            <li>
-              <Link href="/blog" className="hover:text-pink-500">Blog</Link>
-            </li>
-            <li>
-              <Link href="/shop" className="hover:text-pink-500">More Products</Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-pink-500">Contact</Link>
-            </li>
+            {isSignedIn && (
+              <li>
+                <SignOutButton>
+                  <button className="hover:text-pink-500">Logout</button>
+                </SignOutButton>
+              </li>
+            )}
           </ul>
         )}
       </nav>
     </header>
   );
 };
-
-
 
 export default Header1;
